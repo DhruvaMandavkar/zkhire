@@ -1,12 +1,12 @@
 # ZKHire
 
-![CI](https://github.com/YOUR_USERNAME/zkhire/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/DhruvaMandavkar/zkhire/actions/workflows/ci.yml/badge.svg)
 
 > Privacy-preserving job eligibility verification using Zero-Knowledge Proofs on Midnight Network
 
 ## Live Demo
 
-**Preprod Demo:** [PLACEHOLDER - Will be added after frontend deployment]
+**Preprod Demo:** https://zkhire.vercel.app
 
 Try the live application on Midnight Preprod network.
 
