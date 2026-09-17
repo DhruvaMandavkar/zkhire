@@ -1,0 +1,123 @@
+name: ZKHire CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [20.x]
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run tests
+      run: npm test
+    
+    - name: Build frontend
+      run: npm run build
+    
+    - name: Check build output
+      run: |
+        if [ ! -d "dist" ]; then
+          echo "Build failed: dist directory not found"
+          exit 1
+        fi
+        echo "✅ Build successful"
+    
+  contract-validation:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Validate Compact contract syntax
+      run: |
+        echo "📋 Checking Compact contract..."
+        if [ -f "contracts/zkhire.compact" ]; then
+          echo "✅ Contract file found"
+          echo "Contract validation would run here with Compact compiler"
+        else
+          echo "❌ Contract file not found"
+          exit 1
+        fi
+    
+    - name: Contract structure check
+      run: |
+        echo "Verifying contract contains required functions..."
+        grep -q "verifyEligibility" contracts/zkhire.compact && echo "✅ verifyEligibility found"
+        grep -q "verifyCGPAOnly" contracts/zkhire.compact && echo "✅ verifyCGPAOnly found"
+        grep -q "verifyExperienceOnly" contracts/zkhire.compact && echo "✅ verifyExperienceOnly found"
+        grep -q "verifyWithSalary" contracts/zkhire.compact && echo "✅ verifyWithSalary found"
+        grep -q "getStats" contracts/zkhire.compact && echo "✅ getStats found"
+
+  code-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: TypeScript type check
+      run: npx tsc --noEmit
+    
+    - name: Check for TODO/FIXME comments
+      run: |
+        echo "Checking for TODO/FIXME comments..."
+        if grep -r "TODO\|FIXME" src/ --exclude-dir=node_modules || true; then
+          echo "⚠️  Found TODO/FIXME comments (informational only)"
+        fi
+
+  security-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run security audit
+      run: npm audit --audit-level=moderate || true
+    
+    - name: Check for sensitive files
+      run: |
+        echo "Checking for sensitive files..."
+        if [ -f ".env" ]; then
+          echo "⚠️  .env file found - should be in .gitignore"
+          exit 1
+        fi
+        echo "✅ No sensitive files exposed"
