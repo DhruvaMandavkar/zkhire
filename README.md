@@ -14,9 +14,9 @@ Try the live application on Midnight Preprod network.
 
 | Network  | Address                              |
 |----------|--------------------------------------|
-| Preprod  | [PLACEHOLDER - Will be added after contract deployment] |
+| Preprod  | Pending deployment - Midnight Compact compiler access required |
 
-**⚠️ This address must be added after deploying the contract for submission to be valid.**
+**📝 Note:** The Midnight Compact compiler Docker image is not yet publicly available. The contract source code (`contracts/zkhire.compact`) is complete and ready for compilation once the tooling is accessible.
 
 ## What This Product Does
 
@@ -358,9 +358,9 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ## Links
 
-- **Live Demo:** [To be added after deployment]
-- **Contract Address:** [To be added after deployment]
-- **X Profile:** [To be added after account creation]
+- **Live Demo:** https://zkhire.vercel.app
+- **Contract Address:** [Pending Midnight Compact compiler access]
+- **X Profile:** https://x.com/DhruvaMandavkar
 - **Documentation:** [docs/USAGE.md](./docs/USAGE.md)
 - **Midnight Network:** https://midnight.network
 - **Lace Wallet:** https://www.lace.io
