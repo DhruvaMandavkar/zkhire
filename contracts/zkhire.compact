@@ -1,0 +1,163 @@
+/*
+ * ZKHire - Private Job Eligibility Verification Contract
+ * 
+ * PRIVACY MODEL:
+ * --------------
+ * PUBLIC (On-chain, visible to all):
+ *   - Job requirement thresholds (minCGPA, requiredDegree, minExperience)
+ *   - Verification status (whether applicant meets requirements)
+ *   - Number of verifications performed
+ * 
+ * PRIVATE (Witness data, never revealed on-chain):
+ *   - Applicant's actual CGPA value
+ *   - Applicant's actual years of experience
+ *   - Applicant's personal details
+ * 
+ * PROVED (Zero-Knowledge Proof without revealing actual values):
+ *   - "My CGPA >= minCGPA" (without revealing exact CGPA)
+ *   - "My degree matches required degree" (without revealing full credentials)
+ *   - "My experience >= minExperience" (without revealing exact years)
+ * 
+ * This allows job seekers to prove eligibility while keeping their actual
+ * credentials private, giving them control over their personal data.
+ */
+
+circuit ZKHire {
+
+  // Public ledger state - visible to all
+  Ledger<{
+    Uint totalVerifications,           // Total number of verifications
+    Uint successfulVerifications,      // Count of successful verifications
+    Bool initialized
+  }> state;
+
+  // Constructor - initializes the contract
+  constructor() {
+    state.totalVerifications = 0;
+    state.successfulVerifications = 0;
+    state.initialized = true;
+  }
+
+  /*
+   * Core verification function
+   * 
+   * Proves that an applicant meets job requirements without revealing
+   * their actual credentials.
+   * 
+   * @param actualCGPA - PRIVATE: The applicant's real CGPA (e.g., 7.8)
+   * @param minCGPA - PUBLIC: Job requirement (e.g., 7.0)
+   * @param actualDegree - PRIVATE: Applicant's degree type (1=Bachelors, 2=Masters, 3=PhD)
+   * @param requiredDegree - PUBLIC: Required degree type
+   * @param actualExperience - PRIVATE: Years of experience
+   * @param minExperience - PUBLIC: Required minimum experience
+   * 
+   * @returns Boolean indicating if applicant meets all requirements
+   */
+  export function verifyEligibility(
+    witness actualCGPA: Uint,
+    public minCGPA: Uint,
+    witness actualDegree: Uint,
+    public requiredDegree: Uint,
+    witness actualExperience: Uint,
+    public minExperience: Uint
+  ): Ledger<Bool> {
+    
+    // Privacy-preserving comparisons
+    // The actual values stay private, only the comparison results are computed
+    const cgpaValid: Bool = actualCGPA >= minCGPA;
+    const degreeValid: Bool = actualDegree >= requiredDegree;
+    const experienceValid: Bool = actualExperience >= minExperience;
+    
+    // All requirements must be met
+    const isEligible: Bool = cgpaValid && degreeValid && experienceValid;
+    
+    // Update public counters
+    state.totalVerifications = state.totalVerifications + 1;
+    
+    if (isEligible) {
+      state.successfulVerifications = state.successfulVerifications + 1;
+    }
+    
+    // Return verification result as ledger state
+    // Note: The result is public, but the actual credential values remain private
+    return isEligible;
+  }
+
+  /*
+   * Simplified verification for CGPA only
+   * Useful for jobs that only care about academic performance
+   */
+  export function verifyCGPAOnly(
+    witness actualCGPA: Uint,
+    public minCGPA: Uint
+  ): Ledger<Bool> {
+    
+    const isEligible: Bool = actualCGPA >= minCGPA;
+    
+    state.totalVerifications = state.totalVerifications + 1;
+    
+    if (isEligible) {
+      state.successfulVerifications = state.successfulVerifications + 1;
+    }
+    
+    return isEligible;
+  }
+
+  /*
+   * Verify experience only
+   * For positions where experience is the primary requirement
+   */
+  export function verifyExperienceOnly(
+    witness actualExperience: Uint,
+    public minExperience: Uint
+  ): Ledger<Bool> {
+    
+    const isEligible: Bool = actualExperience >= minExperience;
+    
+    state.totalVerifications = state.totalVerifications + 1;
+    
+    if (isEligible) {
+      state.successfulVerifications = state.successfulVerifications + 1;
+    }
+    
+    return isEligible;
+  }
+
+  /*
+   * Get verification statistics
+   * Public view of how many verifications have been performed
+   */
+  export function getStats(): Ledger<{Uint, Uint}> {
+    return (state.totalVerifications, state.successfulVerifications);
+  }
+
+  /*
+   * Advanced verification with salary expectation proof
+   * Proves: "My expected salary is within the offered range"
+   * Without revealing the exact expected salary
+   */
+  export function verifyWithSalary(
+    witness actualCGPA: Uint,
+    public minCGPA: Uint,
+    witness actualExperience: Uint,
+    public minExperience: Uint,
+    witness expectedSalary: Uint,
+    public minSalary: Uint,
+    public maxSalary: Uint
+  ): Ledger<Bool> {
+    
+    const cgpaValid: Bool = actualCGPA >= minCGPA;
+    const experienceValid: Bool = actualExperience >= minExperience;
+    const salaryInRange: Bool = (expectedSalary >= minSalary) && (expectedSalary <= maxSalary);
+    
+    const isEligible: Bool = cgpaValid && experienceValid && salaryInRange;
+    
+    state.totalVerifications = state.totalVerifications + 1;
+    
+    if (isEligible) {
+      state.successfulVerifications = state.successfulVerifications + 1;
+    }
+    
+    return isEligible;
+  }
+}
