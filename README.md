@@ -21,14 +21,14 @@ Try the live application on Midnight Preprod network.
 ## Level 5 — User Validation
 
 **Target:** 50 Preprod users  
-**Current:** 4 / 50 users (8%)  
+**Current:** 5 / 50 users (10%)  
 **Status:** 🟢 User acquisition in progress
 
 **User Tracking:** See [USERS.md](./USERS.md) for complete wallet address list  
 **Feedback Log:** See [docs/FEEDBACK.md](./docs/FEEDBACK.md) for user feedback and iterations
 
 **Progress Milestones:**
-- ⬜ 10 users (20%)
+- ⬜ 10 users (20%) — Almost at first milestone!
 - ⬜ 25 users (50%)
 - ⬜ 40 users (80%)
 - ⬜ 50 users (100%) 🎉
