@@ -21,7 +21,7 @@ Try the live application on Midnight Preprod network.
 ## Level 5 — User Validation
 
 **Target:** 50 Preprod users  
-**Current:** 2 / 50 users (4%)  
+**Current:** 3 / 50 users (6%)  
 **Status:** 🟢 User acquisition in progress
 
 **User Tracking:** See [USERS.md](./USERS.md) for complete wallet address list  

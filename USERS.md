@@ -1,7 +1,7 @@
 # Preprod Users — Level 5
 
 **Target:** 50 verified wallet addresses  
-**Current Count:** 2 / 50  
+**Current Count:** 3 / 50  
 **Last Updated:** September 22, 2026
 
 ---
@@ -12,7 +12,7 @@
 |----|----------------|------------|--------|----------|
 | 1  | midnig...h4om | Sept 22, 2026 | Developer/Creator | ✅ |
 | 2  | midnig...4alh | Sept 22, 2026 | Testing/Demo | ✅ |
-| 3  | | | | ⬜ |
+| 3  | midnig...46un | Sept 22, 2026 | Testing/Demo | ✅ |
 | 4  | | | | ⬜ |
 | 5  | | | | ⬜ |
 | 6  | | | | ⬜ |
@@ -82,8 +82,8 @@
 ## User Acquisition Progress
 
 ### Week 1 (Target: 15 users)
-- Current: 2
-- Status: � In Progress (13% of week 1 goal)
+- Current: 3
+- Status: 🟢 In Progress (20% of week 1 goal)
 
 ### Week 2 (Target: 30 users total)
 - Current: 0
@@ -170,4 +170,4 @@
 - ⬜ 40 users (80%)
 - ⬜ 50 users (100%) 🎉
 
-**Current Status:** � **2%** Complete (1/50 users)
+**Current Status:** 🟢 **6%** Complete (3/50 users)
