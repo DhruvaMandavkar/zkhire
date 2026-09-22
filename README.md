@@ -18,6 +18,29 @@ Try the live application on Midnight Preprod network.
 
 **📝 Note:** The Midnight Compact compiler Docker image is not yet publicly available. The contract source code (`contracts/zkhire.compact`) is complete and ready for compilation once the tooling is accessible.
 
+## Level 5 — User Validation
+
+**Target:** 50 Preprod users  
+**Current:** 0 / 50 users (0%)  
+**Status:** 🔴 User acquisition in progress
+
+**User Tracking:** See [USERS.md](./USERS.md) for complete wallet address list  
+**Feedback Log:** See [docs/FEEDBACK.md](./docs/FEEDBACK.md) for user feedback and iterations
+
+**Progress Milestones:**
+- ⬜ 10 users (20%)
+- ⬜ 25 users (50%)
+- ⬜ 40 users (80%)
+- ⬜ 50 users (100%) 🎉
+
+**How to Participate:**
+1. Visit the [live demo](https://zkhire.vercel.app)
+2. Connect your Lace wallet (Preprod network)
+3. Try the privacy-preserving verification
+4. Share your wallet address and feedback ([contact info](https://x.com/DhruvaMandavkar))
+
+**User Acquisition Materials:** See [USER_ACQUISITION.md](./USER_ACQUISITION.md) for outreach templates
+
 ## What This Product Does
 
 ZKHire solves a critical privacy problem in job recruitment: applicants must share complete credentials with every employer, exposing sensitive data like exact CGPA, full employment history, and salary expectations before even knowing if they're a good fit.
