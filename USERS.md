@@ -1,7 +1,7 @@
 # Preprod Users — Level 5
 
 **Target:** 50 verified wallet addresses  
-**Current Count:** 0 / 50  
+**Current Count:** 1 / 50  
 **Last Updated:** September 22, 2026
 
 ---
@@ -10,7 +10,7 @@
 
 | #  | Wallet Address | Date Added | Source | Verified |
 |----|----------------|------------|--------|----------|
-| 1  | | | | ⬜ |
+| 1  | midnig...h4om | Sept 22, 2026 | Developer/Creator | ✅ |
 | 2  | | | | ⬜ |
 | 3  | | | | ⬜ |
 | 4  | | | | ⬜ |
@@ -170,4 +170,4 @@
 - ⬜ 40 users (80%)
 - ⬜ 50 users (100%) 🎉
 
-**Current Status:** 🔴 **0%** Complete (0/50 users)
+**Current Status:** � **2%** Complete (1/50 users)
