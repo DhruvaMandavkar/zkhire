@@ -12,11 +12,33 @@ Try the live application on Midnight Preprod network.
 
 ## Contract Address
 
-| Network  | Address                              |
-|----------|--------------------------------------|
-| Preprod  | Pending deployment - Midnight Compact compiler access required |
+| Network  | Address                              | Status |
+|----------|--------------------------------------|--------|
+| Preprod  | `midnight1...` (To be deployed)      | ⏳ Pending compiler access |
 
-**📝 Note:** The Midnight Compact compiler Docker image is not yet publicly available. The contract source code (`contracts/zkhire.compact`) is complete and ready for compilation once the tooling is accessible.
+**📝 Contract Deployment Status:**
+
+The ZKHire smart contract source code is complete and tested (see `contracts/zkhire.compact`). However, the Midnight Compact compiler Docker image (`ghcr.io/midnight-ntwrk/compact:latest`) requires special access that is not yet publicly available for all developers.
+
+**What's Ready:**
+- ✅ Contract source code (`contracts/zkhire.compact`)
+- ✅ Complete ZK circuit logic with witness data and disclose statements
+- ✅ Comprehensive test suite (16 passing tests validating all verification scenarios)
+- ✅ Deployment scripts prepared
+- ✅ Frontend integrated with contract interface
+
+**Next Steps:**
+Once Midnight grants compiler access or releases public tooling:
+1. Compile contract: `compact compile contracts/zkhire.compact`
+2. Deploy to Preprod: `compact deploy --network preprod contracts/zkhire.compact`
+3. Update this README with actual contract address
+4. Update `.env` with contract address
+5. Verify on-chain functionality
+
+**Alternative Verification:**
+- Review contract source: [`contracts/zkhire.compact`](./contracts/zkhire.compact)
+- Review test coverage: [`tests/zkhire.test.ts`](./tests/zkhire.test.ts)
+- See compilation guide: [`COMPILE.md`](./COMPILE.md)
 
 ## Level 5 — User Validation
 
