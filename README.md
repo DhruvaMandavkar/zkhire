@@ -158,7 +158,7 @@ Follow these steps to run ZKHire on your machine:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/zkhire.git
+git clone https://github.com/DhruvaMandavkar/zkhire.git
 cd zkhire
 ```
 
@@ -205,7 +205,7 @@ Edit `.env` and add your configuration:
 
 ```env
 VITE_NETWORK=preprod
-VITE_CONTRACT_ADDRESS=YOUR_CONTRACT_ADDRESS_HERE
+VITE_CONTRACT_ADDRESS=midnight1_pending_deployment
 ```
 
 ### 5. Run Development Server
@@ -346,7 +346,7 @@ zkhire/
 
 ## Product X Profile
 
-**X (Twitter):** [PLACEHOLDER - Will be added after creating the product X account]
+**X (Twitter):** [@DhruvaMandavkar](https://x.com/DhruvaMandavkar)
 
 Follow for updates, privacy insights, and launch announcements.
 
